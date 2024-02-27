@@ -16,10 +16,8 @@
   }
 }
 
-body {
-  .btn-primary {
-    background-color: #F1BE20;
-  }
+body .btn-primary {
+  background-color: #f1be20;
 }
 
 @layer utilities {
