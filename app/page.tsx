@@ -1,4 +1,12 @@
-import { Tag, ChevronDown, ChevronUp, Heart } from "lucide-react";
+import {
+  Tag,
+  ChevronDown,
+  ChevronUp,
+  Heart,
+  Star,
+  Plus,
+  Minus,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./(components)/Navigation";
@@ -47,6 +55,8 @@ const images = [
     path: "/product-image-5.png",
   },
 ];
+
+const currency = String.fromCharCode(8377);
 
 export default function Home() {
   return (
@@ -98,7 +108,10 @@ export default function Home() {
               </button>
               <div>
                 {images.map((image, i) => (
-                  <div key={i.toString()} className="mb-3 last:mb-0 w-12 h-12 border border-slate-300 first:border-black relative rounded-lg overflow-hidden">
+                  <div
+                    key={i.toString()}
+                    className="mb-3 last:mb-0 w-12 h-12 border border-slate-300 first:border-black relative rounded-lg overflow-hidden"
+                  >
                     <Image
                       src={image.path}
                       fill={true}
@@ -140,9 +153,41 @@ export default function Home() {
             </div>
           </div>
           <div className="">
-            <h2 className="text-base font-medium">
+            <h2 className="text-base font-medium mb-2">
               ICER Front Brake Pad A3 2022 Limosine
             </h2>
+            <div className="text-xs flex flex-row gap-1 mb-4">
+              <div className="flex flex-row">
+                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                <Star size={14} strokeWidth={0} fill="#C9C9C9" />
+              </div>
+              <span className="font-medium">4.0</span>
+              <span>{`(261 Reviews)`}</span>
+            </div>
+            <div className="mb-4">
+              <span className="font-bold mr-2">{`${currency}5,042`}</span>
+              <span className="text-xs text-slate-400 mr-2 line-through">{`${currency}6,000`}</span>
+              <span className="font-bold text-green-600">{`16% OFF`}</span>
+            </div>
+            <div className="flex flex-row items-center gap-3 my-3">
+              <div className="border border-black rounded-full flex flex-row items-center">
+                <button className="py-2 px-3 text-lg">
+                  <Plus size={20} strokeWidth={1.25} />
+                </button>
+                <div className="font-medium px-4 h-full flex items-center justify-center">
+                  1
+                </div>
+                <button className="py-2 px-3 text-lg">
+                  <Minus size={20} strokeWidth={1.25} />
+                </button>
+              </div>
+              <span className="text-red-400 text-sm font-medium">
+                Only 2 left
+              </span>
+            </div>
           </div>
         </div>
       </main>
