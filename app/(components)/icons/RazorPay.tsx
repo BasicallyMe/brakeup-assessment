@@ -9,7 +9,7 @@ const RazorPay = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_1_3625)">
+      <g clipPath="url(#clip0_1_3625)">
         <path
           d="M6.11 5.27409L5.32031 8.16043L9.84033 5.25766L6.88414 16.2105L9.88645 16.213L14.2535 0.0351562"
           fill="#3395FF"

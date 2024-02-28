@@ -6,11 +6,23 @@ import BagIcon from "./icons/BagIcon";
 
 const Navigation = () => {
   return (
-    <nav className="py-5 sm:py-3 flex flex-row items-center justify-between sm:grid grid-cols-8 gap-3 text-sm sm:border-b border-slate-300">
+    <nav className="py-5 px-3 sm:py-3 flex flex-row items-center justify-between sm:grid grid-cols-8 gap-3 text-sm sm:border-b border-slate-300 sm:relative bg-white fixed top-0 z-40 max-w-full min-w-full">
       <div className="sm:col-span-1 flex flex-row items-center gap-4 sm:gap-2">
         <ArrowLeft size={20} strokeWidth={2} className="sm:hidden" />
-        <Image src="/logo.svg" height={10} width={25} alt="Logo" className="sm:hidden" />
-        <Image src="/logo.svg" height={10} width={20} alt="Logo" className="hidden sm:block" />
+        <Image
+          src="/logo.svg"
+          height={10}
+          width={25}
+          alt="Logo"
+          className="sm:hidden"
+        />
+        <Image
+          src="/logo.svg"
+          height={10}
+          width={20}
+          alt="Logo"
+          className="hidden sm:block"
+        />
         <Image
           src="/logo_text.svg"
           width={100}

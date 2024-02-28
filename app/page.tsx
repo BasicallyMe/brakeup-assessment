@@ -104,7 +104,7 @@ const currency = String.fromCharCode(8377);
 export default function Home() {
   const [quantity, setQuantity] = useState(1);
   return (
-    <div className="min-h-screen px-3 md:px-7">
+    <div className="min-h-screen px-0 md:px-7 relative">
       <Navigation />
       <div className="hidden sm:flex justify-center items-center py-3 border-b border-slate-300">
         <ul className="flex flex-row gap-5 w-full items-center justify-center text-xs font-medium">
@@ -122,7 +122,7 @@ export default function Home() {
           </li>
         </ul>
       </div>
-      <main>
+      <main className="px-4 sm:px-0">
         <div className="hidden sm:block text-xs py-3 font-normal">
           <Link
             href="/"
@@ -206,7 +206,10 @@ export default function Home() {
               {/* This shows breadcrumbs for mobile view */}
               <div className="sm:hidden flex flex-row items-center justify-center gap-2 w-full">
                 {images.map((item, index) => (
-                  <div className="w-2 h-2 first:bg-black bg-slate-400 rounded-full"></div>
+                  <div
+                    key={item.path}
+                    className="w-2 h-2 first:bg-black bg-slate-400 rounded-full"
+                  ></div>
                 ))}
               </div>
               <div className="hidden sm:flex flex-row gap-3 w-full text-xs py-3">
@@ -219,7 +222,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="sm:mt-0 mt-5">
+          <div className="sm:mt-0 mt-5 mb-10">
             <div className="py-3 border-b border-slate-300">
               <h2 className="text-base font-medium mb-2">{data.productName}</h2>
               <div className="text-xs flex flex-row gap-1 mb-4">
@@ -358,8 +361,8 @@ export default function Home() {
             <div className="py-3 border-b border-slate-300">
               <h4 className="sm:text-xs font-semibold mb-3">Specifications</h4>
               <div className="grid grid-cols-2 gap-3">
-                {data.specifications.map((item) => (
-                  <div className="sm:text-xs text-sm">
+                {data.specifications.map((item, index) => (
+                  <div key={`${index} item-${item.title}`} className="sm:text-xs text-sm">
                     <div className="text-slate-500 mb-0.5">{item.title}</div>
                     <div className="font-medium">{item.value}</div>
                   </div>
@@ -371,8 +374,8 @@ export default function Home() {
                 Frequently bought together
               </h4>
               <div className="sm:text-xs flex flex-row items-center">
-                {data.relatedProducts.map((item) => (
-                  <div className="flex sm:flex-col flex-row">
+                {data.relatedProducts.map((item, index) => (
+                  <div key={`${index} ${item.name}`} className="flex sm:flex-col flex-row">
                     <div className="relative sm:w-24 sm:h-24 w-32 h-32 border border-slate-300 rounded-lg overflow-hidden">
                       <Image
                         src={item.image}
@@ -383,9 +386,7 @@ export default function Home() {
                     </div>
                     <div className="my-2 sm:ml-0 ml-4">
                       <div className="font-medium">{item.name}</div>
-                      <div
-                        className="font-medium sm:text-xs"
-                      >
+                      <div className="font-medium sm:text-xs">
                         {item.category}
                       </div>
                       <div className="font-semibold mt-2">{`${currency}${item.price}`}</div>
@@ -414,6 +415,12 @@ export default function Home() {
                   Add 3 items to cart
                 </button>
               </div>
+            </div>
+            <div className="text-sm text-blue-500 flex flex-row items-center">
+              <a href="" className="font-semibold">
+                View all 419 reviews
+              </a>
+              <ChevronRight size={18} strokeWidth={1.5} />
             </div>
           </div>
         </div>
