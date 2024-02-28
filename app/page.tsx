@@ -298,7 +298,7 @@ export default function Home() {
                 </span>
               </div>
               <div className="text-xs sm:w-3/4 sm:border-t-0 border-t border-slate-300 w-full py-2 my-2">
-                <div className="flex sm:hidden flex-row-reverse sm:flex-row gap-3 w-full text-xs py-3">
+                <div className="flex sm:hidden flex-row-reverse sm:flex-row gap-3 w-full text-sm font-semibold py-3">
                   <button className="btn-primary py-3 rounded-full w-1/2">
                     Buy Now
                   </button>
