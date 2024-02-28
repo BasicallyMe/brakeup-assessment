@@ -63,6 +63,40 @@ const images = [
   },
 ];
 
+const data = {
+  productName: "",
+  relatedProducts: [
+    {
+      name: "ICER Front Brake Pads",
+      category: "Brake Pads",
+      price: "3,609",
+      image: "/other-product-image.png",
+    },
+  ],
+  specifications: [
+    {
+      title: "Parts number",
+      value: "BRK_001108",
+    },
+    {
+      title: "Category",
+      value: "Brake pad",
+    },
+    {
+      title: "Brand",
+      value: "ICER",
+    },
+    {
+      title: "Wear indicator",
+      value: "On product",
+    },
+    {
+      title: "Axle",
+      value: "Front",
+    },
+  ],
+};
+
 const currency = String.fromCharCode(8377);
 
 export default function Home() {
@@ -263,7 +297,7 @@ export default function Home() {
                       {`& more`}
                     </div>
                     <a className="flex flex-row items-center text-blue-700 font-semibold cursor-default hover:underline underline-offset-2">
-                      View Plans
+                      View
                       <ChevronRight size={16} strokeWidth={1} />
                     </a>
                   </div>
@@ -272,6 +306,67 @@ export default function Home() {
               <div className="flex flex-row items-center py-3">
                 <div style={{ fontSize: "0.7rem" }}>Secured by</div>
                 <RazorPay />
+              </div>
+            </div>
+            <div className="py-3 border-b border-slate-300">
+              <h4 className="text-xs font-semibold mb-3">Specifications</h4>
+              <div className="grid grid-cols-2 gap-3">
+                {data.specifications.map((item) => (
+                  <div className="text-xs">
+                    <div className="text-slate-500 mb-0.5">{item.title}</div>
+                    <div className="font-medium">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="py-3">
+              <h4 className="text-xs font-semibold mb-3">
+                Frequently bought together
+              </h4>
+              <div className="text-xs flex flex-row items-center">
+                {data.relatedProducts.map((item) => (
+                  <div>
+                    <div className="relative w-24 h-24 border border-slate-300 rounded-lg overflow-hidden">
+                      <Image
+                        src={item.image}
+                        fill={true}
+                        alt="Thumbnail image of a product"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="my-2">
+                      <div className="font-medium">{item.name}</div>
+                      <div
+                        className="font-medium"
+                        style={{ fontSize: "0.7rem" }}
+                      >
+                        {item.category}
+                      </div>
+                    </div>
+                    <div className="font-semibold">{`${currency}${item.price}`}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-slate-100 rounded-lg py-3 px-5 my-3 text-xs grid grid-cols-3 items-center">
+                <div className="flex flex-row items-center gap-10 col-span-2">
+                  <div className="">
+                    <div className="text-slate-400">1 Item</div>
+                    <div className="font-semibold">{`${currency}2,386`}</div>
+                  </div>
+                  <div className="text-xl font-light text-slate-400">{`+`}</div>
+                  <div className="">
+                    <div className="text-slate-400">2 Add-ons</div>
+                    <div className="font-semibold">{`${currency}2,386`}</div>
+                  </div>
+                  <div className="text-xl font-light text-slate-400">{`=`}</div>
+                  <div className="">
+                    <div className="text-slate-400">Total</div>
+                    <div className="font-semibold">{`${currency}6,795`}</div>
+                  </div>
+                </div>
+                <button className="py-3 px-6 rounded-full border border-black font-medium col-span-1">
+                  Add 3 items to cart
+                </button>
               </div>
             </div>
           </div>
