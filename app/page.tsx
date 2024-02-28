@@ -1,7 +1,10 @@
+"use client";
+
 import {
   Tag,
   ChevronDown,
   ChevronUp,
+  ChevronRight,
   Heart,
   Star,
   Plus,
@@ -10,6 +13,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./(components)/Navigation";
+import CarIcon from "./(components)/icons/CarIcon";
+import HdfcIcon from "./(components)/icons/HdfcIcon";
+import GooglePay from "./(components)/icons/GooglePay";
+import RazorPay from "./(components)/icons/RazorPay";
 
 const categories = [
   {
@@ -152,41 +159,120 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="">
-            <h2 className="text-base font-medium mb-2">
-              ICER Front Brake Pad A3 2022 Limosine
-            </h2>
-            <div className="text-xs flex flex-row gap-1 mb-4">
-              <div className="flex flex-row">
-                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
-                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
-                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
-                <Star size={14} strokeWidth={0} fill="#F2AB3C" />
-                <Star size={14} strokeWidth={0} fill="#C9C9C9" />
-              </div>
-              <span className="font-medium">4.0</span>
-              <span>{`(261 Reviews)`}</span>
-            </div>
-            <div className="mb-4">
-              <span className="font-bold mr-2">{`${currency}5,042`}</span>
-              <span className="text-xs text-slate-400 mr-2 line-through">{`${currency}6,000`}</span>
-              <span className="font-bold text-green-600">{`16% OFF`}</span>
-            </div>
-            <div className="flex flex-row items-center gap-3 my-3">
-              <div className="border border-black rounded-full flex flex-row items-center">
-                <button className="py-2 px-3 text-lg">
-                  <Plus size={20} strokeWidth={1.25} />
-                </button>
-                <div className="font-medium px-4 h-full flex items-center justify-center">
-                  1
+          <div>
+            <div className="py-3 border-b border-slate-300">
+              <h2 className="text-base font-medium mb-2">
+                ICER Front Brake Pad A3 2022 Limosine
+              </h2>
+              <div className="text-xs flex flex-row gap-1 mb-4">
+                <div className="flex flex-row">
+                  <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                  <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                  <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                  <Star size={14} strokeWidth={0} fill="#F2AB3C" />
+                  <Star size={14} strokeWidth={0} fill="#C9C9C9" />
                 </div>
-                <button className="py-2 px-3 text-lg">
-                  <Minus size={20} strokeWidth={1.25} />
-                </button>
+                <span className="font-medium">4.0</span>
+                <span>{`(261 Reviews)`}</span>
               </div>
-              <span className="text-red-400 text-sm font-medium">
-                Only 2 left
-              </span>
+              <div className="mb-4">
+                <span className="font-bold mr-2">{`${currency}5,042`}</span>
+                <span className="text-xs text-slate-400 mr-2 line-through">{`${currency}6,000`}</span>
+                <span className="font-bold text-green-600">{`16% OFF`}</span>
+              </div>
+              <div className="flex flex-row items-center gap-3 my-3">
+                <div className="border border-black rounded-full flex flex-row items-center">
+                  <button className="py-2 px-3 text-lg">
+                    <Plus size={20} strokeWidth={1.25} />
+                  </button>
+                  <div className="font-medium px-4 h-full flex items-center justify-center">
+                    1
+                  </div>
+                  <button className="py-2 px-3 text-lg">
+                    <Minus size={20} strokeWidth={1.25} />
+                  </button>
+                </div>
+                <span className="text-red-400 text-sm font-medium">
+                  Only 2 left
+                </span>
+              </div>
+              <div className="border border-green-600 rounded-full flex flex-row py-3 items-center justify-center bg-green-50 text-xs font-medium mt-4 ">
+                <CarIcon fill="#000000" />
+                <span className="ml-1">
+                  Fits for{" "}
+                  <a href="" className="underline underline-offset-2">
+                    Mercedes-AMG GT 63 S E Performance
+                  </a>
+                </span>
+              </div>
+              <div className="text-xs w-3/4 py-2 my-2">
+                <form className="" onSubmit={(e) => e.preventDefault()}>
+                  <label htmlFor="pin" className="font-semibold">
+                    Delivery Option
+                  </label>
+                  <div className="h-12 my-2 flex flex-row items-center px-1 py-3 border rounded-lg border-slate-300">
+                    <input
+                      className="w-3/4 px-2 border-r border-slate-400 h-full focus-within:outline-none"
+                      type="text"
+                      name="pin"
+                      id="pin"
+                      placeholder="Enter Pin-code"
+                    />
+                    <input
+                      type="submit"
+                      className="w-1/4 font-semibold"
+                      value="Check"
+                    />
+                  </div>
+                  <span className="text-slate-500">
+                    Please enter PIN code to check delivery time.
+                  </span>
+                </form>
+              </div>
+            </div>
+            <div className="border-b border-slate-300 py-3">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-lg border border-blue-700 text-xs overflow-hidden">
+                  <div className="font-semibold px-3 py-4 bg-slate-50">
+                    {`EMI from ${currency}244/month`}
+                  </div>
+                  <div className="flex flex-row items-center justify-between px-3 py-4">
+                    <div
+                      style={{ fontSize: "0.7rem" }}
+                      className="flex flex-row items-center gap-2 text-slate-400"
+                    >
+                      <HdfcIcon />
+                      {`& more`}
+                    </div>
+                    <a className="flex flex-row items-center text-blue-700 font-semibold cursor-default hover:underline underline-offset-2">
+                      View Plans
+                      <ChevronRight size={16} strokeWidth={1} />
+                    </a>
+                  </div>
+                </div>
+                <div className="rounded-lg border border-blue-700 text-xs overflow-hidden">
+                  <div className="font-semibold px-3 py-4 bg-slate-50">
+                    {`Save up to ${currency}252`}
+                  </div>
+                  <div className="flex flex-row items-center justify-between px-3 py-4">
+                    <div
+                      style={{ fontSize: "0.7rem" }}
+                      className="flex flex-row items-center gap-2 text-slate-400"
+                    >
+                      <GooglePay />
+                      {`& more`}
+                    </div>
+                    <a className="flex flex-row items-center text-blue-700 font-semibold cursor-default hover:underline underline-offset-2">
+                      View Plans
+                      <ChevronRight size={16} strokeWidth={1} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row items-center py-3">
+                <div style={{ fontSize: "0.7rem" }}>Secured by</div>
+                <RazorPay />
+              </div>
             </div>
           </div>
         </div>
