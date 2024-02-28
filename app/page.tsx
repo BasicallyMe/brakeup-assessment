@@ -133,23 +133,27 @@ export default function Home() {
           <Link
             href="/"
             className="text-slate-400 hover:text-black"
-            aria-label="Home"
+            aria-label="Products"
           >{`Products / `}</Link>
           <Link
             href="/"
             className="text-slate-400 hover:text-black"
-            aria-label="Home"
+            aria-label="Brake System"
           >{`Brake System / `}</Link>
           <Link
             href="/"
-            aria-label="Home"
-          >{`ICER Front Brake Pad A3 2022 Limosine`}</Link>
+            aria-label={data.productName}
+          >{`${data.productName}`}</Link>
         </div>
         <div className="flex flex-col sm:grid sm:gap-7 grid-cols-2 sm:mt-3">
           <div className="flex sm:flex-row flex-col">
             {/* This holds the mini thumbnails for desktop screen */}
             <div className="w-12 hidden sm:flex flex-col items-center py-3">
-              <button className="mb-1 disabled:text-slate-400" disabled={true}>
+              <button
+                className="mb-1 disabled:text-slate-400"
+                aria-label="Previous"
+                disabled={true}
+              >
                 <ChevronUp size={16} strokeWidth={1.5} />
               </button>
               <div>
@@ -162,12 +166,12 @@ export default function Home() {
                       src={image.path}
                       fill={true}
                       className="object-contain"
-                      alt="Placeholder"
+                      alt="Image of the product"
                     />
                   </div>
                 ))}
               </div>
-              <button className="mt-1">
+              <button className="mt-1" aria-label="Next">
                 <ChevronDown size={16} strokeWidth={1.5} />
               </button>
             </div>
@@ -179,6 +183,9 @@ export default function Home() {
               >
                 <button
                   className="z-10 absolute w-9 h-9 flex items-center justify-center rounded-full border border-slate-300 top-3 right-3"
+                  aria-label={
+                    liked ? "Remove from wishlist" : "Add to wishlist"
+                  }
                   onClick={() => {
                     setLiked((prevState) => !prevState);
                   }}
@@ -256,6 +263,7 @@ export default function Home() {
                   <button
                     className="py-3 sm:py-2 px-3 text-lg disabled:text-slate-300"
                     disabled={quantity <= 1}
+                    aria-label="Reduce quantity"
                     onClick={() => {
                       setQuantity((prevQuantity) => prevQuantity - 1);
                     }}
@@ -268,6 +276,7 @@ export default function Home() {
                   <button
                     className="py-3 sm:py-2 px-3 text-lg disabled:text-slate-300"
                     disabled={quantity === data.available}
+                    aria-label="Increase quantity"
                     onClick={() => {
                       setQuantity((prevQuantity) => prevQuantity + 1);
                     }}
@@ -324,7 +333,7 @@ export default function Home() {
                 </form>
               </div>
             </div>
-            <div className="border-b border-slate-300 py-3">
+            <div className="border-b border-slate-300 py-3 mt-4">
               <div className="flex flex-col sm:grid grid-cols-2 gap-4">
                 <div className="rounded-lg border border-blue-700 sm:text-xs  overflow-hidden">
                   <div className="font-semibold px-3 py-4 bg-slate-50">

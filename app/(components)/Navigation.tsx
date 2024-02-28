@@ -33,10 +33,10 @@ const Navigation = () => {
       </div>
       {/* This holds the nav bar items for mobile view */}
       <div className="sm:hidden flex flex-row gap-4">
-        <button>
+        <button aria-label="Search">
           <Search size={20} strokeWidth={1.65} />
         </button>
-        <button className="relative px-2">
+        <button className="relative px-2" aria-label="Cart" title="cart">
           <span
             className="absolute top-2 right-0 font-semibold rounded-full border border-white w-4 h-4 flex items-center justify-center"
             style={{ fontSize: "0.55rem", backgroundColor: "#F1BE20" }}
@@ -68,7 +68,7 @@ const Navigation = () => {
               placeholder="What are you looking for?"
             />
           </div>
-          <button className="btn-primary px-3">
+          <button className="btn-primary px-3" aria-label="Search">
             <Search size={16} strokeWidth={1.5} />
           </button>
         </div>
@@ -80,13 +80,13 @@ const Navigation = () => {
           My Garage
         </button>
         <div className="flex flex-row gap-4 items-center ml-auto mr-0 pl-4">
-          <button className="px-1">
+          <button className="px-1" aria-label="Profile" title="Profile">
             <UserRound size={16} strokeWidth={1.5} />
           </button>
-          <button className="px-1">
+          <button className="px-1" aria-label="Wishlist" title="Wishlist">
             <Heart size={16} strokeWidth={1.65} />
           </button>
-          <button className="px-1 relative">
+          <button className="px-1 relative" aria-label="Cart" title="Cart">
             <span
               className="absolute top-0 right-0 font-semibold rounded-full w-3 h-3 flex items-center justify-center"
               style={{ fontSize: "0.45rem", backgroundColor: "#F1BE20" }}

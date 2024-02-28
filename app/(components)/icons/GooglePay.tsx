@@ -4,6 +4,7 @@ const GooglePay = () => {
     return (
       <svg
         width="20"
+        aria-label='Google Pay Logo'
         height="18"
         viewBox="0 0 20 18"
         fill="none"

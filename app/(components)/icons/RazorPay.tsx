@@ -5,6 +5,7 @@ const RazorPay = () => {
     <svg
       width="90"
       height="20"
+      aria-label="RazorPay Logo"
       viewBox="0 0 95 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
