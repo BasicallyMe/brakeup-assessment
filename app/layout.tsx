@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -7,6 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Brakeup Internet Technologies Assessment",
   description: "Assessment for Brakeup Internel Technologies",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
 };
 
 export default function RootLayout({

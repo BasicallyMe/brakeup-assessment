@@ -103,7 +103,7 @@ export default function Home() {
   return (
     <div className="min-h-screen px-3 md:px-7">
       <Navigation />
-      <div className="flex justify-center items-center py-3 border-b border-slate-300">
+      <div className="hidden sm:flex justify-center items-center py-3 border-b border-slate-300">
         <ul className="flex flex-row gap-5 w-full items-center justify-center text-xs font-medium">
           {categories.map((item) => (
             <li key={item.id}>{item.title}</li>
@@ -120,7 +120,7 @@ export default function Home() {
         </ul>
       </div>
       <main>
-        <div className="text-xs py-3 font-normal">
+        <div className="hidden sm:block text-xs py-3 font-normal">
           <Link
             href="/"
             className="text-slate-400 hover:text-black"
@@ -141,9 +141,9 @@ export default function Home() {
             aria-label="Home"
           >{`ICER Front Brake Pad A3 2022 Limosine`}</Link>
         </div>
-        <div className="grid gap-7 grid-cols-2 mt-3">
-          <div className="flex flex-row">
-            <div className="w-12 flex flex-col items-center py-3">
+        <div className="flex flex-col sm:grid sm:gap-7 grid-cols-2 sm:mt-3">
+          <div className="flex sm:flex-row flex-col">
+            <div className="w-12 hidden sm:flex flex-col items-center py-3">
               <button className="mb-1 disabled:text-slate-400" disabled={true}>
                 <ChevronUp size={16} strokeWidth={1.5} />
               </button>
@@ -169,7 +169,7 @@ export default function Home() {
             <div className="w-full flex flex-col gap-3 items-center px-5">
               <div
                 style={{ height: "500px", width: "500px" }}
-                className="relative border border-slate-300 rounded-lg"
+                className="hidden sm:block relative border border-slate-300 rounded-lg"
               >
                 <button className="absolute w-9 h-9 flex items-center justify-center rounded-full border border-slate-300 top-3 right-3">
                   <Heart size={18} strokeWidth={1.5} />
@@ -193,7 +193,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="">
             <div className="py-3 border-b border-slate-300">
               <h2 className="text-base font-medium mb-2">
                 ICER Front Brake Pad A3 2022 Limosine
@@ -265,7 +265,7 @@ export default function Home() {
               </div>
             </div>
             <div className="border-b border-slate-300 py-3">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col sm:grid grid-cols-2 gap-4">
                 <div className="rounded-lg border border-blue-700 text-xs overflow-hidden">
                   <div className="font-semibold px-3 py-4 bg-slate-50">
                     {`EMI from ${currency}244/month`}
@@ -297,7 +297,7 @@ export default function Home() {
                       {`& more`}
                     </div>
                     <a className="flex flex-row items-center text-blue-700 font-semibold cursor-default hover:underline underline-offset-2">
-                      View
+                      View offers
                       <ChevronRight size={16} strokeWidth={1} />
                     </a>
                   </div>
@@ -325,7 +325,7 @@ export default function Home() {
               </h4>
               <div className="text-xs flex flex-row items-center">
                 {data.relatedProducts.map((item) => (
-                  <div>
+                  <div className="flex sm:flex-col flex-row">
                     <div className="relative w-24 h-24 border border-slate-300 rounded-lg overflow-hidden">
                       <Image
                         src={item.image}
@@ -334,7 +334,7 @@ export default function Home() {
                         className="object-contain"
                       />
                     </div>
-                    <div className="my-2">
+                    <div className="my-2 sm:ml-0 ml-2">
                       <div className="font-medium">{item.name}</div>
                       <div
                         className="font-medium"
@@ -342,8 +342,8 @@ export default function Home() {
                       >
                         {item.category}
                       </div>
+                      <div className="font-semibold mt-2">{`${currency}${item.price}`}</div>
                     </div>
-                    <div className="font-semibold">{`${currency}${item.price}`}</div>
                   </div>
                 ))}
               </div>
