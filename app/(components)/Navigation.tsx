@@ -19,14 +19,15 @@ const Navigation = () => {
           className="hidden sm:block"
         />
       </div>
+      {/* This holds the nav bar items for mobile view */}
       <div className="sm:hidden flex flex-row gap-4">
         <button>
           <Search size={20} strokeWidth={1.65} />
         </button>
         <button className="relative px-2">
           <span
-            className="absolute top-2 right-0 font-semibold rounded-full w-3 h-3 flex items-center justify-center"
-            style={{ fontSize: "0.45rem", backgroundColor: "#F1BE20" }}
+            className="absolute top-2 right-0 font-semibold rounded-full border border-white w-4 h-4 flex items-center justify-center"
+            style={{ fontSize: "0.55rem", backgroundColor: "#F1BE20" }}
           >
             10
           </span>
