@@ -103,6 +103,7 @@ const currency = String.fromCharCode(8377);
 
 export default function Home() {
   const [quantity, setQuantity] = useState(1);
+  const [liked, setLiked] = useState(false);
   return (
     <div className="min-h-screen px-0 md:px-7 relative">
       <Navigation />
@@ -173,11 +174,20 @@ export default function Home() {
             <div className="w-full flex flex-col gap-3 items-center sm:px-5">
               {/* This holds the main image for desktop screen */}
               <div
-                style={{ height: "500px", width: "500px" }}
+                style={{ height: "500px", minWidth: "500px", width: "100%" }}
                 className="hidden sm:block relative border border-slate-300 rounded-lg"
               >
-                <button className="z-10 absolute w-9 h-9 flex items-center justify-center rounded-full border border-slate-300 top-3 right-3">
-                  <Heart size={18} strokeWidth={1.5} />
+                <button
+                  className="z-10 absolute w-9 h-9 flex items-center justify-center rounded-full border border-slate-300 top-3 right-3"
+                  onClick={() => {
+                    setLiked((prevState) => !prevState);
+                  }}
+                >
+                  {liked ? (
+                    <Heart size={18} strokeWidth={0} fill="#F23B13" />
+                  ) : (
+                    <Heart size={18} strokeWidth={1.5} />
+                  )}
                 </button>
                 <div className="relative h-full w-full">
                   <Image
@@ -362,7 +372,10 @@ export default function Home() {
               <h4 className="sm:text-xs font-semibold mb-3">Specifications</h4>
               <div className="grid grid-cols-2 gap-3">
                 {data.specifications.map((item, index) => (
-                  <div key={`${index} item-${item.title}`} className="sm:text-xs text-sm">
+                  <div
+                    key={`${index} item-${item.title}`}
+                    className="sm:text-xs text-sm"
+                  >
                     <div className="text-slate-500 mb-0.5">{item.title}</div>
                     <div className="font-medium">{item.value}</div>
                   </div>
@@ -375,7 +388,10 @@ export default function Home() {
               </h4>
               <div className="sm:text-xs flex flex-row items-center">
                 {data.relatedProducts.map((item, index) => (
-                  <div key={`${index} ${item.name}`} className="flex sm:flex-col flex-row">
+                  <div
+                    key={`${index} ${item.name}`}
+                    className="flex sm:flex-col flex-row"
+                  >
                     <div className="relative sm:w-24 sm:h-24 w-32 h-32 border border-slate-300 rounded-lg overflow-hidden">
                       <Image
                         src={item.image}
