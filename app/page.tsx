@@ -122,7 +122,7 @@ export default function Home() {
           </li>
         </ul>
       </div>
-      <main className="px-4 sm:px-0">
+      <main className="px-4 sm:px-0 sm:mt-0 mt-20">
         <div className="hidden sm:block text-xs py-3 font-normal">
           <Link
             href="/"
