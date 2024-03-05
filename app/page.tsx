@@ -11,6 +11,8 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
+import type { RootState } from "@/lib/store";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./(components)/Navigation";
@@ -46,64 +48,14 @@ const categories = [
   },
 ];
 
-const images = [
-  {
-    path: "/product-image-1.png",
-  },
-  {
-    path: "/product-image-2.png",
-  },
-  {
-    path: "/product-image-3.png",
-  },
-  {
-    path: "/product-image-4.png",
-  },
-  {
-    path: "/product-image-5.png",
-  },
-];
-
-const data = {
-  productName: "ICER Front Brake Pad A3 2022 Limosine",
-  available: 2,
-  relatedProducts: [
-    {
-      name: "ICER Front Brake Pads",
-      category: "Brake Pads",
-      price: "3,609",
-      image: "/other-product-image.png",
-    },
-  ],
-  specifications: [
-    {
-      title: "Parts number",
-      value: "BRK_001108",
-    },
-    {
-      title: "Category",
-      value: "Brake pad",
-    },
-    {
-      title: "Brand",
-      value: "ICER",
-    },
-    {
-      title: "Wear indicator",
-      value: "On product",
-    },
-    {
-      title: "Axle",
-      value: "Front",
-    },
-  ],
-};
-
 const currency = String.fromCharCode(8377);
 
 export default function Home() {
   const [quantity, setQuantity] = useState(1);
   const [liked, setLiked] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const product = useSelector((state: RootState) => state.product.value);
+
   return (
     <div className="min-h-screen px-0 md:px-7 relative">
       <Navigation />
@@ -142,8 +94,8 @@ export default function Home() {
           >{`Brake System / `}</Link>
           <Link
             href="/"
-            aria-label={data.productName}
-          >{`${data.productName}`}</Link>
+            aria-label={product.productName}
+          >{`${product.productName}`}</Link>
         </div>
         <div className="flex flex-col sm:grid sm:gap-7 grid-cols-2 sm:mt-3">
           <div className="flex sm:flex-row flex-col">
@@ -152,15 +104,19 @@ export default function Home() {
               <button
                 className="mb-1 disabled:text-slate-400"
                 aria-label="Previous"
-                disabled={true}
+                disabled={currentImage === 0}
+                onClick={() => setCurrentImage((prevState) => prevState - 1)}
               >
                 <ChevronUp size={16} strokeWidth={1.5} />
               </button>
               <div>
-                {images.map((image, i) => (
-                  <div
+                {product.images.map((image, i) => (
+                  <button
+                    onClick={() => setCurrentImage(i)}
                     key={i.toString()}
-                    className="mb-3 last:mb-0 w-12 h-12 border border-slate-300 first:border-black relative rounded-lg overflow-hidden"
+                    className={`mb-3 last:mb-0 w-12 h-12 border relative rounded-lg overflow-hidden ${
+                      i === currentImage ? "border-black" : "border-slate-300"
+                    }`}
                   >
                     <Image
                       src={image.path}
@@ -168,10 +124,15 @@ export default function Home() {
                       className="object-contain"
                       alt="Image of the product"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
-              <button className="mt-1" aria-label="Next">
+              <button
+                className="mt-1"
+                aria-label="Next"
+                disabled={currentImage === product.images.length - 1}
+                onClick={() => setCurrentImage((prevState) => prevState + 1)}
+              >
                 <ChevronDown size={16} strokeWidth={1.5} />
               </button>
             </div>
@@ -222,7 +183,7 @@ export default function Home() {
               </div>
               {/* This shows breadcrumbs for mobile view */}
               <div className="sm:hidden flex flex-row items-center justify-center gap-2 w-full">
-                {images.map((item, index) => (
+                {product.images.map((item, index) => (
                   <div
                     key={item.path}
                     className="w-2 h-2 first:bg-black bg-slate-400 rounded-full"
@@ -241,7 +202,9 @@ export default function Home() {
           </div>
           <div className="sm:mt-0 mt-5 mb-10">
             <div className="py-3 border-b border-slate-300">
-              <h2 className="text-base font-medium mb-2">{data.productName}</h2>
+              <h2 className="text-base font-medium mb-2">
+                {product.productName}
+              </h2>
               <div className="text-xs flex flex-row gap-1 mb-4">
                 <div className="flex flex-row">
                   <Star size={14} strokeWidth={0} fill="#F2AB3C" />
@@ -254,8 +217,8 @@ export default function Home() {
                 <span>{`(261 Reviews)`}</span>
               </div>
               <div className="mb-4">
-                <span className="font-bold mr-2">{`${currency}5,042`}</span>
-                <span className="text-xs text-slate-400 mr-2 line-through">{`${currency}6,000`}</span>
+                <span className="font-bold mr-2">{`${currency}${product.currentPrice}`}</span>
+                <span className="text-xs text-slate-400 mr-2 line-through">{`${currency}${product.fixedPrice}`}</span>
                 <span className="font-bold text-green-600">{`16% OFF`}</span>
               </div>
               <div className="flex flex-row items-center gap-3 my-3">
@@ -275,7 +238,7 @@ export default function Home() {
                   </div>
                   <button
                     className="py-3 sm:py-2 px-3 text-lg disabled:text-slate-300"
-                    disabled={quantity === data.available}
+                    disabled={quantity === product.available}
                     aria-label="Increase quantity"
                     onClick={() => {
                       setQuantity((prevQuantity) => prevQuantity + 1);
@@ -285,7 +248,7 @@ export default function Home() {
                   </button>
                 </div>
                 <span className="text-red-400 text-sm font-medium">
-                  {`Only ${data.available} left`}
+                  {`Only ${product.available} left`}
                 </span>
               </div>
               <div className="border border-green-600 rounded-full hidden sm:flex flex-row py-3 items-center justify-center bg-green-50 text-xs font-medium mt-4 ">
@@ -380,7 +343,7 @@ export default function Home() {
             <div className="py-3 border-b border-slate-300">
               <h4 className="sm:text-xs font-semibold mb-3">Specifications</h4>
               <div className="grid grid-cols-2 gap-3">
-                {data.specifications.map((item, index) => (
+                {product.specifications.map((item, index) => (
                   <div
                     key={`${index} item-${item.title}`}
                     className="sm:text-xs text-sm"
@@ -396,7 +359,7 @@ export default function Home() {
                 Frequently bought together
               </h4>
               <div className="sm:text-xs flex flex-row items-center">
-                {data.relatedProducts.map((item, index) => (
+                {product.relatedProducts.map((item, index) => (
                   <div
                     key={`${index} ${item.name}`}
                     className="flex sm:flex-col flex-row"
